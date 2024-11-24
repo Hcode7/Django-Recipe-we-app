@@ -1,0 +1,48 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% load ratings %}
+{% block content %}
+<style>
+    #name-link {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        {% for menu in menus %}
+        <div class="col-md-4 mb-4"> 
+            <div class="card" style="text-align: center; height: 100%;">
+                <img src="{{ menu.img.url }}" class="card-img-top img-fluid" alt="Recipe Image">
+                <div class="card-body">
+                    <a id="name-link" href="{% url 'recipe_detail' menu.slug %}">
+                        <h4>{{ menu.name }}</h4>
+                    </a>
+                </div>
+                <div class="star-ratings" data-score="4.0" data-max="5">
+                    <div class="star-ratings-rating">
+                        <span class="star-ratings-star-filled" style="width: 80%;"></span>
+                    </div>
+                </div>
+                
+                {% ratings menu %}
+                
+
+                {% if request.user.is_staff %}
+                <div>
+                    <a href="{% url 'update_recipe' menu.slug %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete_recipe' menu.slug menu.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+                {% endif %}
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% load ratings %}
+{% block content %}
+<style>
+    #name-link {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<header class="d-flex bg-danger align-items-center justify-content-center " >
+    <di class="col-8" style="color: #FFDF00; margin: 20px;">
+        <hr style="border: 0; height: 1px; background-color: #FFDF00;">
+        <div class="d-flex align-items-center">
+            <h1>C</h1><h2>hef</h2>
+        </div>
+        <h2>Jhone Do</h2>
+        <hr style="border: 0; height: 1px; background-color: #FFDF00;">
+    </div>
+    <img src="{% static 'img/OIP (2).jpg' %}" class="img-fluid" style="width: 500px; height: auto; margin: 40px; border-radius: 6px 6px 6px;"   alt="">
+</header>
+<div class="container">
+    <br>
+    <br>
+    <h3 class="m-60" style="margin: 50px;">Items of the week 😋 : </h3>
+    <br>
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-4 mb-4"> 
+            <div class="card" style="text-align: center; height: 100%;">
+                <img src="{{ recipe.img.url }}" class="card-img-top img-fluid"  alt="Recipe Image">
+                <div class="card-body">
+                    <a id="name-link" href="{% url 'recipe_detail' recipe.slug %}">
+                        <h4>{{ recipe.name }}</h4>
+                    </a>
+                </div>
+                <div class="star-ratings" data-score="4.0" data-max="5">
+                    <div class="star-ratings-rating">
+                        <span class="star-ratings-star-filled" style="width: 80%;"></span>
+                    </div>
+                </div>
+                
+                {% ratings recipe %}
+                
+
+                {% if request.user.is_staff %}
+                <div>
+                    <a href="{% url 'update_recipe' recipe.slug %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete_recipe' recipe.slug recipe.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+                {% endif %}
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

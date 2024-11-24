@@ -1,0 +1,27 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h3 style="margin: 60px;">Add your recipe 😋 Here :  </h3>
+<br>
+<div class="add_recipe d-flex justify-content-center col-md-4">
+    <form  class="col-md-6" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="name">Name: </label>
+        <br>
+        <input name="name" type="text" required>
+        <br><br>
+        
+        <label for="description">Description:</label>
+        <br>
+        <textarea name="description" id="description" cols="80" rows="4" required></textarea>
+        <br><br>
+
+        {{ form.img }}  
+        <br><br>
+        
+        <button type="submit" id="share" class="btn btn-primary">Share</button>
+    </form>
+    
+</div>
+{% endblock content %}

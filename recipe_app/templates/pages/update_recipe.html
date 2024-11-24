@@ -1,0 +1,27 @@
+{% extends 'pages/base.html' %}
+
+
+{% block content %}
+<br>
+<div class="update_recipe d-flex  justify-content-center col-4">
+    <form class="col-md-2" action="" method="post">
+        {% csrf_token %}
+        <label for="name">Name : </label>
+        <br>
+        <br>
+        {{ update.name }}
+        <br>
+        <br>
+        <label for="description">Description: </label>
+        <br>
+        <br>
+        {{ update.description }}
+        <br>
+        <br>
+        {{ update.img }}
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock content %}

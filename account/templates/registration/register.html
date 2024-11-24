@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<div class="d-flex register card align-items-center form-control">
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="username">Username : </label>
+        <input type="text" name="username" id="">
+        <br>
+
+
+        <label for="email">Email : </label>
+        <input name="email" type="text">
+        <br>
+
+        <label for="password1">Password : </label>
+        <input name="password1" type="password">
+        <br>
+
+        <label for="password2">Password Confirm : </label>
+        <input name="password2" type="password">
+        <br>
+        
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <br>
+</div>
+{% endblock content %}
